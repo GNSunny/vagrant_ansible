@@ -1,0 +1,44 @@
+---
+# tasks file for apache
+- name: install nginx
+  apt: name=nginx state=installed
+
+- name: write our nginx.conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: write our /etc/nginx/sites-available/default
+  template: src=default-site.j2 dest=/etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: clean existing website content
+  file: path=/usr/share/nginx/html/ state=absent
+
+- name: deploy website content
+  git: repo=https://github.com/jweissig/episode-47.git
+       dest=/usr/share/nginx/html/
+       version:{{ app_version }}
+
+
+  
+# - name: 1. install the apache
+#   yum: name=httpd state=present
+#   ignore_errors: yes
+
+# - name: 2. Start & Enable Apache Server to start on boot
+#   service: name=httpd state=started enabled=yes
+
+# - name: 3. install Hello World PHP script
+#   copy: src=index.php dest=/var/www/html/index.php mode=0664
+#   notify: restart httpd 
+
+# - name: 4. Enable the firewall port for Apache
+#   firewalld: 
+#      port: 80/tcp 
+#      permanent: true 
+#      state: enabled 
+#      immediate: yes
+#   notify: restart httpd 
+
+
+# # - include: copy_code.yml

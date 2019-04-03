@@ -1,0 +1,7 @@
+---
+# handlers file for common
+# - name: restart httpd service
+#   service: name=httpd state=restarted enabled=yes
+
+- name: restart haproxy
+  service: name=haproxy state=restarted

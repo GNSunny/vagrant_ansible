@@ -1,0 +1,7 @@
+---
+# tasks file for mariadb
+- name: 1. Install MariaDB server package
+  yum: name={{ item }} state=present
+  with_items: 
+  - mariadb-server
+  - mariadb

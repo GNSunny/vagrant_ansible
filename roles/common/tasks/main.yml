@@ -1,0 +1,31 @@
+---
+# tasks file for common
+- name: install git
+  apt: name=elinks state=installed update_cache=yes
+
+# - name: Update the yum package 
+#   command: yum update -y
+
+# - name: Install httpd and php
+#   yum: name={{ item }} state=present
+#   with_items:
+#    - php
+#    - php-mysql
+#    - php-dba
+#    - php-devel
+#    - php-gd
+#    - php-mbstring
+#    - php-gd
+#   notify: restart httpd service
+
+# - name: Install web role specific dependencies
+#   yum: name={{ item }} state=installed
+#   with_items:
+#    - git
+
+# - name: Enable Firewall on all the hosts
+#   service: name=firewalld state=started enabled=yes
+
+# - name: Enable the firewall port for SSH
+#   firewalld: port=22/tcp permanent=true state=enabled immediate=yes
+#   notify: restart httpd service

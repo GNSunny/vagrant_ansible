@@ -1,0 +1,11 @@
+---
+# tasks file for php
+- name: install php dependencies
+  package: name=php7.2 state=present
+  
+
+- name: add OndreJ php repo
+  raw: LC_ALL=en_us.UTF-8 add-apt-repository ppa:ondreJ/php -y
+
+- name: update the server
+  command: yum update -y 

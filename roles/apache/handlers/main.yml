@@ -1,0 +1,7 @@
+---
+# handlers file for apache
+# - name: restart httpd
+#   service: name=httpd service=restarted enabled=yes
+#   ignore_errors: yes
+- name: restart nginx
+  service: name=nginx state=restarted
